@@ -5,6 +5,7 @@
 // 1. VARIABLES
 let name = "Drew";                    // changeable value
 const birthYear = 1991;               // cannot be changed
+const favoriteColor = "purple";
 var oldWay = "This is old style";     // avoid using 'var' in modern JS
 
 let age = 35;
@@ -13,6 +14,7 @@ let score = null;                     // intentionally empty
 
 console.log("Name:", name);
 console.log("Age:", age);
+console.log("My name is " + name + " and my favorite color is " + favoriteColor + ".");
 
 // 2. FUNCTIONS
 
@@ -25,6 +27,9 @@ function greet(person) {
 const addNumbers = (a, b) => {
     return a + b;
 };
+const multiply = (a, b) => {
+    return a * b;
+};
 
 // Function that modifies the page
 function showMessage(text, color = "blue") {
@@ -35,13 +40,14 @@ function showMessage(text, color = "blue") {
 
 // 3. ARRAYS
 
-const fruits = ["Apple", "Banana", "Mango", "Orange", "Pineapple"];
+const fruits = ["Apple", "Banana", "Mango", "Orange", "Pineapple", "Strawberry", "Grapes",];
 
 const numbers = [10, 20, 30, 40, 50];
 
 // Array methods examples
 console.log("First fruit:", fruits[0]);
 console.log("Number of fruits:", fruits.length);
+console.log("Last fruit:", fruits[fruits.length - 1]);
 
 // 4. OBJECTS (Bonus - Very Important)
 const person = {
@@ -62,32 +68,21 @@ let clickCount = 0;
 const button = document.getElementById('clickBtn');
 const message = document.getElementById('message');
 
+// Press 'R' to reset
+// New button behavior - Show random fruit each click
 button.addEventListener('click', () => {
     clickCount++;
     
-    if (clickCount === 1) {
-        showMessage("Great! First click! 🎉", "green");
-    } 
-    else if (clickCount === 5) {
-        showMessage(`You've clicked ${clickCount} times! Here's a random fruit: ${fruits[Math.floor(Math.random() * fruits.length)]}`, "purple");
-    } 
-    else if (clickCount === 10) {
-        showMessage("You're getting good at this! 🏆", "orange");
-    } 
-    else {
-        showMessage(`Button clicked ${clickCount} times`, "blue");
-    }
-});
-
-// Press 'R' to reset
-document.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'r') {
-        clickCount = 0;
-        showMessage("Counter reset! Try clicking again.", "gray");
-    }
+    // Get a random fruit
+    const randomIndex = Math.floor(Math.random() * fruits.length);
+    const randomFruit = fruits[randomIndex];
+    
+    // Show the message
+    showMessage(`Click #${clickCount} → Random Fruit: ${randomFruit} 🍎`, "green");
 });
 
 // Run some examples on page load
 console.log(greet(name));
 console.log("Sum of 7 and 8 =", addNumbers(7, 8));
 console.log("Person's full name:", person.fullName());
+console.log("7 multiplied by 8 =", multiply(7, 8));
